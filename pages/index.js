@@ -3,6 +3,52 @@ import Link from 'next/link';
 import Head from 'next/head';
 import Nav from '../components/nav';
 import _ from 'underscore';
+import styled from 'styled-components';
+
+const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const Number = styled.span`
+  display: flex;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  background: ${ props => {
+    const n = parseInt( props.children, 10 );
+    if( n <= 10 ) {
+      return 'yellow;'
+    }
+    else if( n <= 20 ) {
+      return 'blue;'
+    }
+    else if( n <= 30 ) {
+      return 'red;'
+    }
+    else if( n <= 40 ) {
+      return 'black;'  
+    }
+    else {
+      return 'green;'
+    }
+  } };
+  color: ${ props => {
+    const n = parseInt( props.children, 10 );
+    if( 10 < n && n <= 20 ) {
+      return 'white;'
+    }
+    else if( 30 < n && n <= 40 ) {
+      return 'white;'
+    }
+    else {
+      return 'black;'
+    }
+  } }
+`;
 
 function generate() {
   let numbers = [];
@@ -27,9 +73,9 @@ const Home = () => {
       </Head>
 
       <div className="container">
-          <div>
-            { list.map( element => <span>{ element + ' ' }</span> ) }
-          </div>
+          <Row>
+            { list.map( element => <Number>{ element + ' ' }</Number> ) }
+          </Row>
           <div>
             <button onClick={ regenerate }>재생성</button>
           </div>
@@ -43,46 +89,6 @@ const Home = () => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-        }
-        .title {
-          margin: 0;
-          width: 100%;
-          padding-top: 80px;
-          line-height: 1.15;
-          font-size: 48px;
-        }
-        .title,
-        .description {
-          text-align: center;
-        }
-        .row {
-          max-width: 880px;
-          margin: 80px auto 40px;
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-        }
-        .card {
-          padding: 18px 18px 24px;
-          width: 220px;
-          text-align: left;
-          text-decoration: none;
-          color: #434343;
-          border: 1px solid #9b9b9b;
-        }
-        .card:hover {
-          border-color: #067df7;
-        }
-        .card h3 {
-          margin: 0;
-          color: #067df7;
-          font-size: 18px;
-        }
-        .card p {
-          margin: 0;
-          padding: 12px 0 0;
-          font-size: 13px;
-          color: #333;
         }
       `}</style>
     </div>
