@@ -1,31 +1,36 @@
 {
-    "name": "lotto-generator",
-    "profile": "default",
-    "regions": ["ap-northeast-2"],
-    "lambda": {
-      "memory": 256,
-      "runtime": "nodejs10.x"
-    },
-    "proxy": {
-      "command": "npm start",
-      "timeout": 25,
-      "listen_timeout": 15,
-      "shutdown_timeout": 15
-    },
-    "stages": {
-      "development": {
-        "proxy": {
-          "command": "yarn dev"
-        }
-      }
-    },
-    "environment": {
-      "NODE_ENV": "production"
-    },
-    "error_pages": {
-      "variables": {
-        "support_email": "kko0831@hanmail.net",
-        "color": "#2986e2"
+  "name": "lotto-generator",
+  "profile": "default",
+  "regions": ["ap-northeast-2"],
+  "lambda": {
+    "memory": 256,
+    "runtime": "nodejs10.x"
+  },
+  "proxy": {
+    "command": "npm start",
+    "timeout": 25,
+    "listen_timeout": 15,
+    "shutdown_timeout": 15
+  },
+  "stages": {
+    "development": {
+      "proxy": {
+        "command": "yarn dev"
       }
     }
+  },
+  "environment": {
+    "NODE_ENV": "production",
+    "API_HOST": "https://api.service.com",
+    "DB_HOST": "https://rds.service.com",
+    "DB_USER": "master",
+    "DB_PASSWORD": "rlaruddh",
+    "DB_NAME": "lotto"
+  },
+  "error_pages": {
+    "variables": {
+      "support_email": "kko0831@hanmail.net",
+      "color": "#2986e2"
+    }
   }
+}
